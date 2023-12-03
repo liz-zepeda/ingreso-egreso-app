@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +29,11 @@ constructor(private _angularFireAuth: AngularFireAuth) { }
 
   logout() {
     return this._angularFireAuth.signOut();
+  }
+
+  isAuth() {
+    return this._angularFireAuth.authState.pipe(
+      map(fuser => fuser != null)
+    )
   }
 }
