@@ -12,4 +12,9 @@ constructor(private _angularFireAuth: AngularFireAuth) { }
     return this._angularFireAuth.createUserWithEmailAndPassword(email, password);
     // console.log({nombre, email, password})
   }
+
+  loginUsuario(email:string, password:string) {
+    return this._angularFireAuth.signInWithEmailAndPassword(email, password);
+
+  }
 }
