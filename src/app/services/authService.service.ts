@@ -17,4 +17,8 @@ constructor(private _angularFireAuth: AngularFireAuth) { }
     return this._angularFireAuth.signInWithEmailAndPassword(email, password);
 
   }
+
+  logout() {
+    return this._angularFireAuth.signOut();
+  }
 }
