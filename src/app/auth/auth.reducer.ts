@@ -1,9 +1,9 @@
-import { Usuario } from '../modelos/usuario.model';
+import { UsuarioModel } from '../modelos/usuario.model';
 import * as actions from './auth.actionts';
 import { createReducer, on } from '@ngrx/store';
 
 export interface State {
-    user: Usuario; 
+    user: UsuarioModel; 
 }
 
 export const initialState: State = {

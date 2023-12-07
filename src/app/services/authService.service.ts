@@ -8,7 +8,7 @@ import * as authAction from '../auth/auth.actionts';
 
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 
-import { Usuario } from '../modelos/usuario.model';
+import { UsuarioModel } from '../modelos/usuario.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ import { Usuario } from '../modelos/usuario.model';
 export class AuthService {
 
   userSubscription$: Subscription;
-  private _usuario: Usuario;
+  private _usuario: UsuarioModel;
 
   get usuario () {
     return { ...this._usuario };
@@ -37,7 +37,7 @@ constructor(
             // console.log(firestoreUser);
             // const tempUser = new Usuario( 'aldf', 'sldf', 'sdf@fsfd.com');
 
-            const user = Usuario.fromFirebase( firestoreUser );
+            const user = UsuarioModel.fromFirebase( firestoreUser );
 
             this._usuario = user;
             this.store.dispatch(authAction.setUser({ user }))
@@ -58,7 +58,7 @@ constructor(
    
     return this._angularFireAuth.createUserWithEmailAndPassword(email, password)
       .then( ({ user }) => {
-        const newUser = new Usuario( user.uid, nombre, email );
+        const newUser = new UsuarioModel( user.uid, nombre, email );
 
         return this._firestore.doc(`${ user.uid }/usuario`).set({ ...newUser });
          

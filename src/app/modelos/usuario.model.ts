@@ -1,8 +1,8 @@
-export class Usuario {
+export class UsuarioModel {
 
     static fromFirebase( { correo, uid, nombre}: any ) { // el mismo nombre de las propiedades en mi firebase
 
-        return new Usuario(uid, nombre, correo);
+        return new UsuarioModel(uid, nombre, correo);
     }
 
     constructor(

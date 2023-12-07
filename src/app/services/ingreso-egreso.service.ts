@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AuthService } from './authService.service';
-import { IngresoEgreso } from '../modelos/ingreso-egreso.model';
+import { IngresoEgresoModel } from '../modelos/ingreso-egreso.model';
 import 'firebase/firestore';
 
 @Injectable({
@@ -11,7 +11,7 @@ export class IngresoEgresoService {
 
 constructor( private firestore: AngularFirestore, private authService: AuthService) { }
 
-  crearIngresoEgreso(ingresoEgreso: IngresoEgreso) {
+  crearIngresoEgreso(ingresoEgreso: IngresoEgresoModel) {
     const uid = this.authService.usuario.uid;
 
     return this.firestore.doc(`${ uid }/ingresos-egresos`)

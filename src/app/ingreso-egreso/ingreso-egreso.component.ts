@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import Swal from 'sweetalert2';
 import { AppState } from '../app.reducer';
-import { IngresoEgreso } from '../modelos/ingreso-egreso.model';
+import { IngresoEgresoModel } from '../modelos/ingreso-egreso.model';
 import { IngresoEgresoService } from '../services/ingreso-egreso.service';
 import * as uiAction from '../shared/ui.actions';
 import { Subscription } from 'rxjs';
@@ -49,7 +49,7 @@ export class IngresoEgresoComponent implements OnInit, OnDestroy {
 
     const { descripcion, monto } = this.ingresoForm.value;
     
-    const ingresoEgreso = new IngresoEgreso( descripcion, monto, this.tipo );
+    const ingresoEgreso = new IngresoEgresoModel( descripcion, monto, this.tipo );
 
     this.ingresoEgresoService.crearIngresoEgreso(ingresoEgreso)
       .then(() => {
