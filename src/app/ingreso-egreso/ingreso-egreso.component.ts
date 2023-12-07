@@ -7,6 +7,7 @@ import { IngresoEgresoModel } from '../modelos/ingreso-egreso.model';
 import { IngresoEgresoService } from '../services/ingreso-egreso.service';
 import * as uiAction from '../shared/ui.actions';
 import { Subscription } from 'rxjs';
+import { setItem } from './ingreso-egreso.actions';
 
 @Component({
   selector: 'app-ingreso-egreso',
@@ -54,6 +55,7 @@ export class IngresoEgresoComponent implements OnInit, OnDestroy {
     this.ingresoEgresoService.crearIngresoEgreso(ingresoEgreso)
       .then(() => {
         this.store.dispatch(uiAction.stopLoading());
+        // this.store.dispatch(setItem({ items: [ingresoEgreso] }))
         Swal.fire('Registro creado', descripcion, 'success')
         this.ingresoForm.reset();
       })
