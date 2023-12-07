@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import 'firebase/firestore';
 import { IngresoEgresoModel } from '../modelos/ingreso-egreso.model';
 import { AuthService } from './authService.service';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,16 @@ constructor( private firestore: AngularFirestore, private authService: AuthServi
   }
 
   initIngresosEgresosListener$( uid: string) {
-    this.firestore.collection(`${ uid }/ingresos-egresos/items/`).valueChanges()
+    this.firestore.collection(`${ uid }/ingresos-egresos/items/`)
+      .snapshotChanges()
+      .pipe(
+        map(snapshots => snapshots.map(snapshot => ({ 
+              uid: snapshot.payload.doc.id,
+              ...snapshot.payload.doc.data() as {}
+            })
+          )
+        )
+      )
       .subscribe( algo => console.log('initIngresosEgresosListener: ',algo) )
   }
   
