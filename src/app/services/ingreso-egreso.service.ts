@@ -4,6 +4,7 @@ import 'firebase/firestore';
 import { IngresoEgresoModel } from '../modelos/ingreso-egreso.model';
 import { AuthService } from './authService.service';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,7 @@ constructor( private firestore: AngularFirestore, private authService: AuthServi
   }
 
   initIngresosEgresosListener$( uid: string) {
-    this.firestore.collection(`${ uid }/ingresos-egresos/items/`)
+    return this.firestore.collection(`${ uid }/ingresos-egresos/items/`)
       .snapshotChanges()
       .pipe(
         map(snapshots => snapshots.map(snapshot => ({ 
@@ -34,7 +35,6 @@ constructor( private firestore: AngularFirestore, private authService: AuthServi
           )
         )
       )
-      .subscribe( algo => console.log('initIngresosEgresosListener: ',algo) )
   }
   
 }
