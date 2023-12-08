@@ -15,6 +15,8 @@ constructor( private firestore: AngularFirestore, private authService: AuthServi
   crearIngresoEgreso(ingresoEgreso: IngresoEgresoModel) {
     const uid = this.authService.usuario.uid;
 
+    delete ingresoEgreso.uid;
+    
     return this.firestore.doc(`${ uid }/ingresos-egresos`)
       .collection('items')
       .add({ ...ingresoEgreso })
