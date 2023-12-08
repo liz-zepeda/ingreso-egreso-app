@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import 'firebase/firestore';
+import { map } from 'rxjs/operators';
 import { IngresoEgresoModel } from '../modelos/ingreso-egreso.model';
 import { AuthService } from './authService.service';
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +34,13 @@ constructor( private firestore: AngularFirestore, private authService: AuthServi
           )
         )
       )
+  }
+
+  borrarIngresoEgreso( uidItem: string): Promise<void> {
+    const uid = this.authService.usuario.uid;
+
+    return this.firestore.doc(`${ uid }/ingresos-egresos/items/${ uidItem }`).delete();
+
   }
   
 }
