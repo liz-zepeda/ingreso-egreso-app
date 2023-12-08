@@ -15,7 +15,7 @@
               </thead>
 
               <tbody>
-                <tr *ngFor="let item of ingresoEgreso">
+                <tr *ngFor="let item of ingresoEgreso | ordenIngresosPipe">
                   <td> {{ item.descripcion | titlecase }} </td>
                   <td> {{  item.monto | currency }} </td>
                   <td [class.text-success]="item.tipo === 'ingreso'"
