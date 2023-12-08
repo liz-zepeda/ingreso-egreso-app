@@ -5,6 +5,7 @@ import { Subscription, map } from 'rxjs';
 import { AppState } from '../app.reducer';
 import { Store } from '@ngrx/store';
 import * as authAction from '../auth/auth.actionts';
+import * as itemsAction from '../ingreso-egreso/ingreso-egreso.actions';
 
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 
@@ -47,6 +48,7 @@ constructor(
         this._usuario = null;
         this.userSubscription$.unsubscribe();
         this.store.dispatch(authAction.unsetUser());
+        this.store.dispatch(itemsAction.unsetItem());
       }
 
     });
