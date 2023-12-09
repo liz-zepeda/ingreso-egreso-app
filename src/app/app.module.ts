@@ -14,38 +14,28 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
 
-import { ReactiveFormsModule } from '@angular/forms';
-import { NgChartsModule } from 'ng2-charts';
+// import { ReactiveFormsModule } from '@angular/forms';
+// import { NgChartsModule } from 'ng2-charts';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { appReducers } from './app.reducer';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { DetalleComponent } from './ingreso-egreso/detalle/detalle.component';
-import { EstadisticaComponent } from './ingreso-egreso/estadistica/estadistica.component';
-import { IngresoEgresoComponent } from './ingreso-egreso/ingreso-egreso.component';
-import { OrdenIngresosPipe } from './pipes/orden-ingresos.pipe';
+
+import { IngresoEgresoModule } from './ingreso-egreso/ingreso-egreso.module';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
-    IngresoEgresoComponent,
-    OrdenIngresosPipe,
-    EstadisticaComponent,
-    DetalleComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AuthModule,
-    ReactiveFormsModule,
+    IngresoEgresoModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    NgChartsModule,
-    SharedModule,
     StoreModule.forRoot( appReducers ),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
