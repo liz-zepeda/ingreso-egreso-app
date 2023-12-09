@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { AppState } from 'src/app/app.reducer';
 import { IngresoEgresoModel } from 'src/app/modelos/ingreso-egreso.model';
+import { ChartData } from 'chart.js';
 
 @Component({
   selector: 'app-estadistica',
@@ -20,6 +21,14 @@ export class EstadisticaComponent implements OnInit {
 
   ingresosTotal: number = 0;
   egresosTotal : number = 0;
+
+  // Grafica de dona
+  public doughnutChartLabels: string[] = [ 'Ingresos', 'Egresos' ];
+
+  public doughnutChartData: ChartData<'doughnut'> = {
+    labels: this.doughnutChartLabels,
+    datasets: [{ data:[] }],
+  };
 
   constructor( private store: Store<AppState>) { }
 
@@ -47,6 +56,8 @@ export class EstadisticaComponent implements OnInit {
           this.egresosTotal += monto;
           this.egresos ++;
         });
+
+    this.doughnutChartData.datasets = [{ data:[ this.ingresosTotal, this.egresosTotal] }];
   }
 
 }
