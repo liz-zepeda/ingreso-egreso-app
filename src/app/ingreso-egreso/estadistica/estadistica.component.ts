@@ -14,8 +14,6 @@ export class EstadisticaComponent implements OnInit {
 
   ingresosEgresosSubs: Subscription;
 
-  ingresosEgresosItems: IngresoEgresoModel[];
-
   ingresos : number = 0;
   egresos  : number = 0;
 
@@ -43,7 +41,10 @@ export class EstadisticaComponent implements OnInit {
 
   generarEstadistica(items: IngresoEgresoModel[]) {
 
-    // this.ingresosEgresosItems = items;
+    this.ingresosTotal = 0;
+    this.ingresos = 0;
+    this.egresos = 0;
+    this.egresosTotal = 0;
 
     items.filter(item => item.tipo === 'ingreso')
       .map(({ monto }) => {
