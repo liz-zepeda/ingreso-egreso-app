@@ -46,7 +46,7 @@ constructor(
 
       } else {
         this._usuario = null;
-        this.userSubscription$.unsubscribe();
+        this.userSubscription$?.unsubscribe();
         this.store.dispatch(authAction.unsetUser());
         this.store.dispatch(itemsAction.unsetItem());
       }
