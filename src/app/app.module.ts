@@ -12,16 +12,10 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
 import { AuthModule } from './auth/auth.module';
-import { SharedModule } from './shared/shared.module';
 
-// import { ReactiveFormsModule } from '@angular/forms';
-// import { NgChartsModule } from 'ng2-charts';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { appReducers } from './app.reducer';
-
-import { IngresoEgresoModule } from './ingreso-egreso/ingreso-egreso.module';
-
 
 
 @NgModule({
@@ -32,7 +26,6 @@ import { IngresoEgresoModule } from './ingreso-egreso/ingreso-egreso.module';
     BrowserModule,
     AppRoutingModule,
     AuthModule,
-    IngresoEgresoModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
